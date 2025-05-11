@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Mother's Day</title>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: url('https://t4.ftcdn.net/jpg/07/07/28/23/360_F_707282323_0bYz0hp5dG42UbBdDZ7ybxYfcYvFtXoy.jpg');
+      background-size: cover;
+      color: #333;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(242, 194, 194, 0.2);
+      animation: pulse 6s infinite ease-in-out;
+      z-index: 0;
+    }
+    @keyframes pulse {
+      0% { opacity: 0.2; }
+      50% { opacity: 0.4; }
+      100% { opacity: 0.2; }
+    }
+    .card {
+      background-color: #fff;
+      border: 2px solid #f2c2c2;
+      padding: 2rem;
+      border-radius: 12px;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+      position: relative;
+      z-index: 1;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      color: #d45a5a;
+      text-align: center;
+      animation: heartbeat 2.5s infinite;
+    }
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      10% { transform: scale(1.08); }
+      20% { transform: scale(1); }
+      30% { transform: scale(1.08); }
+      40% { transform: scale(1); }
+    }
+    p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+      opacity: 0;
+      animation: slideIn 1s ease-out forwards;
+    }
+    p:nth-child(2) { animation-delay: 0.8s; }
+    p:nth-child(3) { animation-delay: 1.2s; }
+    p:nth-child(4) { animation-delay: 1.6s; }
+    p:nth-child(5) { animation-delay: 2.0s; }
+    p:nth-child(6) { animation-delay: 2.4s; }
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(-20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .typewriter {
+      position: relative;
+      overflow: hidden;
+    }
+    .typewriter::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 0;
+      background: #fff;
+      animation: type 2s steps(30, end) forwards;
+    }
+    @keyframes type {
+      from { width: 100%; }
+      to { width: 0; }
+    }
+    .signature {
+      margin-top: 2rem;
+      font-style: italic;
+      text-align: right;
+      transition: transform 0.3s ease, color 0.3s ease;
+      opacity: 0;
+      animation: slideIn 1s ease-out forwards;
+      animation-delay: 2.8s;
+    }
+    .signature:hover {
+      transform: scale(1.05);
+      color: #d45a5a;
+    }
+    .heart {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: #d45a5a;
+      transform: rotate(-45deg);
+      animation: float 5s linear forwards;
+      z-index: 0;
+      opacity: 0.6;
+    }
+    .heart::before,
+    .heart::after {
+      content: '';
+      width: 15px;
+      height: 15px;
+      background: #d45a5a;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+    .heart::after {
+      left: 7.5px;
+      top: 0;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) rotate(-45deg); opacity: 0.6; }
+      50% { opacity: 0.3; }
+      100% { transform: translateY(-150px) rotate(-45deg); opacity: 0; }
+    }
+    .balloon {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #ff6f6f;
+      transform: rotate(-45deg);
+      animation: balloonFloat 7s linear infinite;
+      z-index: 0;
+      opacity: 0.8;
+    }
+    .balloon::before,
+    .balloon::after {
+      content: '';
+      width: 20px;
+      height: 20px;
+      background: #ff6f6f;
+      border-radius: 50%;
+      position: absolute;
+    }
+    .balloon::before {
+      top: -10px;
+      left: 0;
+    }
+    .balloon::after {
+      left: 10px;
+      top: 0;
+    }
+    .balloon-string {
+      position: absolute;
+      width: 1px;
+      height: 30px;
+      background: #333;
+      bottom: -30px;
+      left: 9.5px;
+      transform-origin: top;
+      animation: sway 2s ease-in-out infinite;
+    }
+    @keyframes balloonFloat {
+      0% { transform: translateY(100vh) rotate(-45deg); opacity: 0.8; }
+      100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0.5; }
+    }
+    @keyframes sway {
+      0% { transform: rotate(0deg); }
+      50% { transform: rotate(10deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>To the Heart of Our Family – Mom</h1>
+    <p class="typewriter">Mom,<br><br>
+    Every good part of who we are traces back to you—<br>
+    your strength, your kindness, your patience, and your love.</p>
+
+    <p class="typewriter">You’ve been our guide, our comfort, and our biggest supporter through every chapter of our lives. We’re endlessly grateful for the sacrifices you’ve made, the wisdom you’ve shared, and the quiet ways you’ve shaped who we’ve become.</p>
+
+    <p class="typewriter">Thank you for always being there—through the good days, the hard ones, and everything in between. Your love is a gift we carry with us always.</p>
+
+    <p class="typewriter">Also… one day we <em>will</em> convince you to come visit us in California. We know the sun, the beaches, and the avocados can’t quite compete with your cozy couch and perfectly stocked pantry—but let’s be honest, it’s time. And if Dad insists on driving the whole way because “he doesn’t trust flying in a giant metal tube,” we promise we’ll have snacks and a warm welcome waiting when you both arrive.</p>
+
+    <p class="typewriter">We love you more than words can say.<br>
+    Happy Mother’s Day!</p>
+
+    <p class="signature">With all our hearts,<br>
+      Your Sons - Jason & Ben Gibson</p>
+  </div>
+  <script>
+    function launchConfetti() {
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.6 },
+        colors: ['#f2c2c2', '#d45a5a', '#fff']
+      });
+    }
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      const card = document.querySelector('.card');
+      const cardRect = card.getBoundingClientRect();
+      const offsetX = Math.random() * (cardRect.width - 15);
+      heart.style.left = `${cardRect.left + offsetX}px`;
+      heart.style.top = `${cardRect.bottom - 20}px`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.className = 'balloon';
+      const string = document.createElement('div');
+      string.className = 'balloon-string';
+      balloon.appendChild(string);
+      const card = document.querySelector('.card');
+      const cardRect = card.getBoundingClientRect();
+      const side = Math.random() < 0.5 ? -1 : 1;
+      const offsetX = side * (cardRect.width / 2 + 50 + Math.random() * 100);
+      balloon.style.left = `${cardRect.left + cardRect.width / 2 + offsetX}px`;
+      balloon.style.top = `${window.innerHeight}px`;
+      document.body.appendChild(balloon);
+      setTimeout(() => balloon.remove(), 7000);
+    }
+
+    window.addEventListener('load', () => {
+      launchConfetti();
+      setTimeout(launchConfetti, 800);
+      setInterval(createHeart, 800);
+      setInterval(createBalloon, 500);
+    });
+
+    document.querySelector('.card').addEventListener('click', launchConfetti);
+  </script>
+</body>
+</html>
